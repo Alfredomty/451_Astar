@@ -17,5 +17,13 @@ class CityGraph:
         return coords
 
     def read_map(self, filename):
-        pass
+        graph = {}
+
+        with open(filename, 'r') as file:
+            for line in file:
+                # Splitting at the dash to get the starting city and neighbors
+
+                line_parts = line.strip().split('-') #['SanJose', 'SanFrancisco(48.4),Monterey(71.7),Fresno(149),SantaCruz(32.7)']
+                starting_city = line_parts[0] #['SanJose']
+                neighbors = line_parts[1].split(',') #The rest
 
