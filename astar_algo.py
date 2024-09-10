@@ -1,8 +1,10 @@
+from city_graph import CityGraph
 
-class AStarAlgo:
+class AStarAlgo(CityGraph):
     # Will take the city graph and do a search on it
-    def __init__(self, city_graph):
-        self.city_graph = city_graph
+    def __init__(self, coordinates_file, map_file):
+        super().__init__(coordinates_file, map_file)
 
+    
     def search():
         pass
