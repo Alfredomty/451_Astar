@@ -6,7 +6,15 @@ class CityGraph:
         self.graph = self.read_map(map_file)
     
     def read_coords(self, filename):
-        pass
+        coords = {}
+
+        with open(filename, 'r') as file:
+            for line in file:
+                city, coord = line.strip().split(':')
+                latitude, longitude = map(float, coord.strip('()').split(','))
+                coords[city] = (latitude,longitude)
+        
+        return coords
 
     def read_map(self, filename):
         pass
