@@ -4,6 +4,7 @@ from cities_graph import CitiesGraph
 
 class AStarAlgo(CitiesGraph):
     # Will take the cities graph and do a search on it
+    # Initializes the super CitiesGraph into A CitiesGraph object
     def __init__(self, coords_file, map_file):
         super().__init__(coords_file, map_file)
 
