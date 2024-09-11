@@ -10,6 +10,7 @@ class AStarAlgo(CitiesGraph):
         coords(dict): holds the coordinates (latitude, longitude) of cities.
         graph(dict) : holds the city connections and distances between them.
     """
+    
     def __init__(self, coords_file, map_file):
         """
         Initializes the AStarAlgo object by loading city coordinates and the map of distances between them.

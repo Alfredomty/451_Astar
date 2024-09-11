@@ -10,6 +10,7 @@ class CitiesGraph:
             containing neighboring cities and the distance to them.
 
     """
+    
     def __init__(self, coords_file, map_file):
         """
         Initializes the CitiesGraph object by reading the cities' coordinates and the connections (map) from the input files.
