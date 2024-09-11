@@ -10,7 +10,7 @@ class CitiesGraph:
             containing neighboring cities and the distance to them.
 
     """
-    
+
     def __init__(self, coords_file, map_file):
         """
         Initializes the CitiesGraph object by reading the cities' coordinates and the connections (map) from the input files.
@@ -67,7 +67,8 @@ class CitiesGraph:
                 starting_city = line_parts[0] #['SanJose']
                 neighbors = line_parts[1].split(',') #The rest
 
-                graph[starting_city] = {} # Populates the main graph
+                graph[starting_city] = {} 
+                # Populates the main graph
                 for neighbor in neighbors:
                     dest, dist = neighbor.split('(')
                     dist = float(dist.strip(')'))
