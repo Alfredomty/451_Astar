@@ -43,6 +43,7 @@ class AStarAlgo(CitiesGraph):
         distance_between_lat = lat2 - lat1
         distance_between_lon = lon2 - lon1
 
+        # Haversine Formula from the Assignment description
         A = np.sin(distance_between_lat / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(distance_between_lon / 2) ** 2
         d = radius * 2 * np.arcsin(np.sqrt(A))
 
@@ -71,6 +72,7 @@ class AStarAlgo(CitiesGraph):
         score[start] = 0
         visited = set()
 
+        # Adapted from https://www.geeksforgeeks.org/a-search-algorithm/
         while queue:
             _, current_score, current_city, path = heapq.heappop(queue)
 
