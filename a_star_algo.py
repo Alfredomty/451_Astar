@@ -23,7 +23,7 @@ class AStarAlgo(CitiesGraph):
         """
         super().__init__(coords_file, map_file)
 
-    def calculate_haversine_distance(self, city1, city2):
+    def calculate_haversine_distance(self, city1, city2) -> float: 
         """
         Calculates the Haversine distance between two cities using their latitude and longitude.
         
@@ -48,7 +48,7 @@ class AStarAlgo(CitiesGraph):
 
         return d
     
-    def search(self, start, goal):
+    def search(self, start, goal) -> tuple:
         """
         Performs an A* search to find the shortest path between the start city and the goal city.
 
