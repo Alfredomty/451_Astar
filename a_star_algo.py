@@ -3,12 +3,36 @@ import numpy as np
 from cities_graph import CitiesGraph
 
 class AStarAlgo(CitiesGraph):
-    # Will take the cities graph and do a search on it
-    # Initializes the super CitiesGraph into A CitiesGraph object
+    """
+    Class that extends the CitiesGraph Class and implements the A* algorithm 
+    for searching the shortest path between cities
+    Attr: 
+        coords(dict): holds the coordinates (latitude, longitude) of cities.
+        graph(dict) : holds the city connections and distances between them.
+    """
     def __init__(self, coords_file, map_file):
+        """
+        Initializes the AStarAlgo object by loading city coordinates and the map of distances between them.
+        Inherits from the CitiesGraph class.
+
+        Params:
+            coords_file(str) : File name containing the cities' coordinates (latitude, longitude).
+            map_file(str) : File name containing the map of city connections and distances.
+        Returns:
+            None
+        """
         super().__init__(coords_file, map_file)
 
     def calculate_haversine_distance(self, city1, city2):
+        """
+        Calculates the Haversine distance between two cities using their latitude and longitude.
+        
+        Params:
+            city1(str): Name of the first city
+            city2(str): Name of the second city
+        Returns:
+            d(float): Haversine distance between the two cities in miles
+        """
         lat1, lon1 = self.coords[city1]
         lat2, lon2 = self.coords[city2]
 
@@ -25,12 +49,24 @@ class AStarAlgo(CitiesGraph):
         return d
     
     def search(self, start, goal):
+        """
+        Performs an A* search to find the shortest path between the start city and the goal city.
+
+        Params: 
+            start(str): name of the starting city
+            goal(str): name of the goal city
+        Returns:
+            A tuple containing:
+                - path: A list of city names that represent the shortest path from start to goal
+                - current_score: The total distance from the shortest path
+            
+        """
         # Prio queue that stores (score, city, path)
         # Uses heaps to calculate
         queue = []
         heapq.heappush(queue, (0 + self.calculate_haversine_distance(start, goal), 0, start, [start]))
 
-        # How much does it cost to go from city to next city
+        # How much does it cost to go from city to next city (distance)
         score = {city: float('inf') for city in self.graph}
         score[start] = 0
         visited = set()
@@ -49,8 +85,9 @@ class AStarAlgo(CitiesGraph):
                 # Ignore
                 if neighbor in visited:
                     continue
-
+                    
                 temp_score = current_score + dist
+                # Update if better score
                 if temp_score < score[neighbor]:
                     score[neighbor] = temp_score
                     f_score = temp_score + self.calculate_haversine_distance(neighbor, goal)
