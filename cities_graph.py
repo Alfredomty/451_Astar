@@ -1,6 +1,5 @@
-import numpy as np
 
-class CityGraph:
+class CitiesGraph:
     def __init__(self, coords_file, map_file):
         self.coords = self.read_coords(coords_file)
         self.graph = self.read_map(map_file)
@@ -35,19 +34,5 @@ class CityGraph:
 
         return graph
     
-    def haversine_distance(self, city1, city2):
-        lat1, lon1 = self.coords[city1]
-        lat2, lon2 = self.coords[city2]
-
-        radius = 3958.8
-
-        lat1, lon1, lat2, lon2 =  map(np.radians, [lat1, lon1, lat2, lon2]) # Switching them to radians
-
-        distance_between_lat = lat2 - lat1
-        distance_between_lon = lon2 - lon1
-
-        A = np.sin(distance_between_lat / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(distance_between_lon / 2) ** 2
-        d = radius * 2 * np.arcsin(np.sqrt(A))
-
-        return d
+    
 
